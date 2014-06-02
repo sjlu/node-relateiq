@@ -1,0 +1,18 @@
+{
+  "name": "relateiq",
+  "version": "0.0.0",
+  "description": "RelateIQ integration for Node.js.",
+  "main": "index.js",
+  "scripts": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sjlu/node-relateiq"
+  },
+  "author": "Steven Lu <tacticalazn@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sjlu/node-relateiq/issues"
+  },
+  "homepage": "https://github.com/sjlu/node-relateiq"
+}
