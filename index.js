@@ -137,7 +137,7 @@ var RelateIQ = (function() {
   }
 
   RelateIQ.prototype.getListItem = function(listId, listItemId, cb) {
-    makeRequest('lists/' + listId + '/listItems/' + listItemId, {}, cb);
+    makeRequest('lists/' + listId + '/listitems/' + listItemId, {}, cb);
   }
 
   RelateIQ.prototype.createListItem = function(listId, listItem, cb) {
@@ -156,6 +156,14 @@ var RelateIQ = (function() {
     };
 
     makeRequest('lists/' + listId + '/listitems', req, cb);
+  }
+
+  RelateIQ.prototype.updateListItem = function(listId, listItemId, listItem, cb) {
+    var req = {
+      method: "PUT",
+      json: listItem
+    };
+    makeRequest('lists/' + listId + '/listitems/' + listItemId, req, cb);
   }
 
   return RelateIQ;

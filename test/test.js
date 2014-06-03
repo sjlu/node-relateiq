@@ -20,6 +20,7 @@ describe('AllTests', function() {
   var contactEmail = uid(24).toLowerCase() + '@' + uid(12).toLowerCase() + '.com';
   var contactId = null;
   var listId = null;
+  var listItemId = null;
 
   it('should create an account', function(done) {
     relateIQ.createAccount({
@@ -86,6 +87,38 @@ describe('AllTests', function() {
       assert.ok(data.id);
       assert.equal(data.name, companyName);
       assert.equal(data.accountId, accountId);
+
+      listItemId = data.id;
+
+      done();
+    });
+  });
+
+  var listItem =
+
+  it('should obtain a list item', function(done) {
+    relateIQ.getListItem(listId, listItemId, function(err, data) {
+      assert.ifError(err);
+      print(err, data);
+
+      assert.ok(data.id);
+
+      listItem = data;
+
+      done();
+    });
+  });
+
+  it('should properly update a list item', function(done) {
+    listItem.name = uid(20);
+    relateIQ.updateListItem(listId, listItemId, listItem, function(err, data) {
+      assert.ifError(err);
+      print(err, data);
+
+      assert.ok(data.id);
+      assert.equal(data.name, listItem.name);
+
+      listItem = data;
 
       done();
     });
