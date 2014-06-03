@@ -1,5 +1,7 @@
 ## node-relateiq
 
+![Travis CI](https://travis-ci.org/sjlu/node-relateiq.svg?branch=master)
+
 This module makes it easier to communicate with the RelateIQ API in a asynchrounous way.
 
 ### Install
