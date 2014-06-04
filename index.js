@@ -166,6 +166,13 @@ var RelateIQ = (function() {
     makeRequest('lists/' + listId + '/listitems/' + listItemId, req, cb);
   }
 
+  RelateIQ.prototype.removeListItem = function(listId, listItemId, cb) {
+    var req = {
+      method: "DELETE"
+    };
+    makeRequest('lists/' + listId + '/listitems/' + listItemId, req, cb);
+  }
+
   return RelateIQ;
 
 })();

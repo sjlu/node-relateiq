@@ -94,7 +94,7 @@ describe('AllTests', function() {
     });
   });
 
-  var listItem =
+  var listItem = null;
 
   it('should obtain a list item', function(done) {
     relateIQ.getListItem(listId, listItemId, function(err, data) {
@@ -123,5 +123,14 @@ describe('AllTests', function() {
       done();
     });
   });
+
+  it('should remove a list item', function(done) {
+    relateIQ.removeListItem(listId, listItemId, function(err, data) {
+      assert.ifError(err);
+      print(err, data);
+
+      done();
+    });
+  })
 
 });
