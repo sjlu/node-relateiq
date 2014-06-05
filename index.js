@@ -77,6 +77,10 @@ var RelateIQ = (function() {
     makeRequest('accounts', {}, cb);
   }
 
+  RelateIQ.prototype.getAccount = function(accountId, cb) {
+    makeRequest('accounts/' + accountId, {}, cb);
+  }
+
   RelateIQ.prototype.createAccount = function(account, cb) {
     if (!account.name) return cb(new Error('Name is required'));
     account = _.pick(account, 'name');

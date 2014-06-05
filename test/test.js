@@ -38,6 +38,18 @@ describe('AllTests', function() {
     });
   });
 
+  it('should retrieve the account', function(done) {
+    relateIQ.getAccount(accountId, function(err, data) {
+      assert.ifError(err);
+      print(err, data);
+
+      assert.equal(data.name, companyName);
+      assert.ok(data.id);
+
+      done();
+    });
+  });
+
   it('should create a contact', function(done) {
     var name = uid(24);
     var company =
