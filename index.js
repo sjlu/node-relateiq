@@ -179,7 +179,7 @@ var RelateIQ = (function() {
   }
 
 
-  RelateIQ.prototype.createEvent = function(email, body, cb) {
+  RelateIQ.prototype.createEvent = function(body, cb) {
     var req = {
       method: "PUT",
       json: body
