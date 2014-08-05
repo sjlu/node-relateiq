@@ -177,6 +177,15 @@ var RelateIQ = (function() {
     makeRequest('lists/' + listId + '/listitems/' + listItemId, req, cb);
   }
 
+
+  RelateIQ.prototype.createEvent = function(email, body, cb) {
+    var req = {
+      method: "PUT",
+      json: body
+    };
+    makeRequest('events/', req, cb);
+  };
+
   return RelateIQ;
 
 })();
