@@ -27,6 +27,7 @@ var RelateIQ = (function() {
 
       switch(httpReq.statusCode) {
         case 200:
+        case 204:
           break;
         case 400:
           return cb(new Error('bad request'));
@@ -53,7 +54,7 @@ var RelateIQ = (function() {
           return cb(new Error('service unavailable'));
           break;
         default:
-          return cb(new Error('unrecognized http status code'));
+          return cb(new Error('unrecognized http status code: '+httpReq.statusCode));
           break;
       }
 
@@ -65,7 +66,7 @@ var RelateIQ = (function() {
         return cb(new Error('unreadable data'));
       }
 
-      if (body.objects) {
+      if (body && body.objects) {
         body = body.objects;
       }
 
