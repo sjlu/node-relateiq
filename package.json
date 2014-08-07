@@ -1,6 +1,6 @@
 {
   "name": "relateiq",
-  "version": "0.0.3-3",
+  "version": "0.0.3-4",
   "description": "RelateIQ integration for Node.js.",
   "main": "index.js",
   "scripts": {
