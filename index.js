@@ -72,15 +72,15 @@ var RelateIQ = (function() {
 
       cb(err, body);
     });
-  }
+  };
 
   RelateIQ.prototype.getAccounts = function(cb) {
     makeRequest('accounts', {}, cb);
-  }
+  };
 
   RelateIQ.prototype.getAccount = function(accountId, cb) {
     makeRequest('accounts/' + accountId, {}, cb);
-  }
+  };
 
   RelateIQ.prototype.createAccount = function(account, cb) {
     if (!account.name) return cb(new Error('Name is required'));
@@ -90,7 +90,7 @@ var RelateIQ = (function() {
       method: 'POST',
       json: account
     }, cb);
-  }
+  };
 
   RelateIQ.prototype.createContact = function(contact, cb) {
     if (!contact.name) return cb(new Error('Name is required'));
@@ -127,27 +127,42 @@ var RelateIQ = (function() {
         properties: contact
       }
     }, cb);
-  }
+  };
 
   RelateIQ.prototype.getContacts = function(cb) {
     makeRequest('contacts', {}, cb);
-  }
+  };
 
   RelateIQ.prototype.getLists = function(cb) {
     makeRequest('lists?_start=0&_limit=50', {}, cb);
-  }
+  };
 
   RelateIQ.prototype.getListItems = function(listId, cb) {
-    makeRequest('lists/' + listId + '/listitems', {}, cb);
-  }
+    var res = [];
+    var getItemsStart = function (start) {
+      makeRequest('lists/' + listId + '/listitems?_start=' + (start * 50) + '&_limit=50', {}, function (err, data) {
+        if (err)
+          cb(err);
+        else {
+          res = res.concat(data);
+          if (data.length < 50) {
+            cb(err, res);
+          } else {
+            getItemsStart(start + 1);
+          }
+        }
+      });
+    }
+    getItemsStart(0);
+  };
 
   RelateIQ.prototype.getListItem = function(listId, listItemId, cb) {
     makeRequest('lists/' + listId + '/listitems/' + listItemId, {}, cb);
-  }
+  };
 
   RelateIQ.prototype.createListItem = function(listId, listItem, cb) {
     if (!listItem.accountId && !listItem.contactIds) {
-      return cb(new Error('accountId or contactIds is required'))
+      return cb(new Error('accountId or contactIds is required'));
     }
     listItem = _.pick(listItem, [
       "accountId",
@@ -161,7 +176,7 @@ var RelateIQ = (function() {
     };
 
     makeRequest('lists/' + listId + '/listitems', req, cb);
-  }
+  };
 
   RelateIQ.prototype.updateListItem = function(listId, listItemId, listItem, cb) {
     var req = {
@@ -169,14 +184,14 @@ var RelateIQ = (function() {
       json: listItem
     };
     makeRequest('lists/' + listId + '/listitems/' + listItemId, req, cb);
-  }
+  };
 
   RelateIQ.prototype.removeListItem = function(listId, listItemId, cb) {
     var req = {
       method: "DELETE"
     };
     makeRequest('lists/' + listId + '/listitems/' + listItemId, req, cb);
-  }
+  };
 
 
   RelateIQ.prototype.createEvent = function(body, cb) {
