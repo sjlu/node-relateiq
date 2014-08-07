@@ -133,6 +133,11 @@ var RelateIQ = (function() {
     makeRequest('contacts', {}, cb);
   };
 
+  RelateIQ.prototype.getUser = function(userid, cb) {
+    makeRequest('users/' + userid, {}, cb);
+  };
+
+
   RelateIQ.prototype.getLists = function(cb) {
     makeRequest('lists?_start=0&_limit=50', {}, cb);
   };
