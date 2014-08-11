@@ -129,6 +129,17 @@ var RelateIQ = (function() {
     }, cb);
   };
 
+  RelateIQ.prototype.getContactByEmail = function(email, cb) {
+    makeRequest('contacts?properties.email='+email, {}, cb);
+  };
+
+  RelateIQ.prototype.updateContact = function(contact, cb) {
+    makeRequest('contacts/' + contact.id, {
+      method: 'PUT',
+      json: contact
+    }, cb);
+  };
+
   RelateIQ.prototype.getContacts = function(cb) {
     makeRequest('contacts', {}, cb);
   };
