@@ -143,6 +143,10 @@ var RelateIQ = (function() {
   RelateIQ.prototype.getContacts = function(cb) {
     makeRequest('contacts', {}, cb);
   };
+  
+  RelateIQ.prototype.getContact = function(contactid, cb) {
+    makeRequest('contacts/' + contactid, {}, cb);
+  };
 
   RelateIQ.prototype.getUser = function(userid, cb) {
     makeRequest('users/' + userid, {}, cb);
