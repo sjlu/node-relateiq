@@ -176,6 +176,29 @@ var RelateIQ = (function() {
     getItemsStart(0);
   };
 
+  RelateIQ.prototype.getListItemByContactId = function(listId, contactId, cb) {
+    var res = [];
+    var getItemsStart = function (start) {
+      makeRequest('lists/' + listId + '/listitems?_ids=[' + contactId + ']&_limit=1', {}, function (err, data) {
+        if (err)
+          cb(err);
+        else {
+          res = res.concat(data);
+          if (data.length < 50) {
+            cb(err, res);
+          } else {
+            getItemsStart(start + 1);
+          }
+        }
+      });
+    }
+    getItemsStart(0);
+  };
+
+  RelateIQ.prototype.getList = function(listId, cb) {
+    makeRequest('lists/' + listId, {}, cb);
+  };
+
   RelateIQ.prototype.getListItem = function(listId, listItemId, cb) {
     makeRequest('lists/' + listId + '/listitems/' + listItemId, {}, cb);
   };
