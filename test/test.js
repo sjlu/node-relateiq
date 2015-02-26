@@ -4,6 +4,11 @@ var async = require('async');
 var assert = require('assert');
 var uid = require('uid');
 var _ = require('lodash');
+var dotenv = require('dotenv');
+
+dotenv.load();
+var apiKey = process.env.RELATEIQ_KEY;
+var apiSecret = process.env.RELATEIQ_SECRET;
 
 function print(err, data) {
   console.log(err);
@@ -12,7 +17,7 @@ function print(err, data) {
 
 describe('AllTests', function() {
 
-  var relateIQ = new RelateIQ('538cdc79e4b04d134110f77b', 'lfE1lEihxIgy0QcfP1fdXUqfU6c');
+  var relateIQ = new RelateIQ(apiKey, apiSecret);
   var accountId = null;
   var companyName = uid(24).toLowerCase();
   var contactName = uid(24).toLowerCase();
