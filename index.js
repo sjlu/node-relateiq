@@ -176,6 +176,10 @@ var RelateIQ = (function() {
     getItemsStart(0);
   };
 
+  RelateIQ.prototype.getList = function(listId, cb) {
+    makeRequest('lists/' + listId, {}, cb);
+  };
+
   RelateIQ.prototype.getListItem = function(listId, listItemId, cb) {
     makeRequest('lists/' + listId + '/listitems/' + listItemId, {}, cb);
   };
