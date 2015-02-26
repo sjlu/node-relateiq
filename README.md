@@ -1,6 +1,6 @@
 ## node-relateiq
 
-![Travis CI](https://travis-ci.org/sjlu/node-relateiq.svg?branch=master)
+[![Circle CI](https://circleci.com/gh/sjlu/node-relateiq/tree/master.svg?style=svg)](https://circleci.com/gh/sjlu/node-relateiq/tree/master)
 
 This module makes it easier to communicate with the RelateIQ API in a asynchrounous way.
 
