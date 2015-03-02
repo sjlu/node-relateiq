@@ -184,6 +184,11 @@ var RelateIQ = (function() {
     makeRequest('lists/' + listId + '/listitems/' + listItemId, {}, cb);
   };
 
+  RelateIQ.prototype.getListItemsByContactId = function(listId, contactIds, cb) {
+    contactIds = [].concat(contactIds);
+    makeRequest('lists/' + listId + '/listitems?contactIds=' + contactIds.join(','), {}, cb);
+  };
+
   RelateIQ.prototype.createListItem = function(listId, listItem, cb) {
     if (!listItem.accountId && !listItem.contactIds) {
       return cb(new Error('accountId or contactIds is required'));
