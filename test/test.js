@@ -89,6 +89,19 @@ describe('AllTests', function() {
     });
   });
 
+  it('should get a list by listId', function(done) {
+    relateIQ.getList(listId, function(err, list) {
+      assert.ifError(err);
+      print(err, list);
+
+      assert.ok(list.id);
+
+      assert.equal(list.id, listId);
+
+      done();
+    });
+  });
+
   it('should create a list item', function(done) {
     relateIQ.createListItem(listId, {
       listId: listId,
@@ -106,6 +119,19 @@ describe('AllTests', function() {
       assert.equal(data.accountId, accountId);
 
       listItemId = data.id;
+
+      done();
+    });
+  });
+
+  it('should fetch a list item by contactId', function(done) {
+    relateIQ.getListItemsByContactId(listId, contactId, function(err, listItems) {
+      assert.ifError(err);
+      print(err, listItems);
+
+      assert.ok(listItems);
+      assert.equal(listItems.length, 1);
+      assert.equal(listItems[0].id, listItemId);
 
       done();
     });
