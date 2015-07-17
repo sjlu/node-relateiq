@@ -82,9 +82,13 @@ var RelateIQ = (function() {
     makeRequest('accounts/' + accountId, {}, cb);
   };
 
+  RelateIQ.prototype.getAccountFields = function(cb) {
+    makeRequest('accounts/fields', {}, cb);
+  };
+
   RelateIQ.prototype.createAccount = function(account, cb) {
     if (!account.name) return cb(new Error('Name is required'));
-    account = _.pick(account, 'name');
+    account = _.pick(account, ['name', 'fieldValues']);
 
     makeRequest('accounts', {
       method: 'POST',
