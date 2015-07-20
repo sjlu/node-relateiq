@@ -55,6 +55,17 @@ describe('AllTests', function() {
     });
   });
 
+  it('should retrieve the account fields', function(done) {
+    relateIQ.getAccountFields(function(err, data) {
+      assert.ifError(err);
+      print(err, data);
+
+      assert.ok(data.fields);
+
+      done();
+    });
+  });
+
   it('should create a contact', function(done) {
     var name = uid(24);
     var company =
